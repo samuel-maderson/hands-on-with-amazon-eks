@@ -10,3 +10,7 @@ eksctl version
 echo "---------- INSTALLING HELM ----------"
 export VERIFY_CHECKSUM=false
 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+
+
+echo "---------- MAKING INFRASTRUCTURE LINK ----------"
+ln -s ../Infrastructure/eksctl/01-initial-cluster/cluster.yaml Infrastructure
