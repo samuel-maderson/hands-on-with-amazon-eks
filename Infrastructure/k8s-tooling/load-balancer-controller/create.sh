@@ -10,3 +10,6 @@ aws cloudformation deploy \
     --stack-name aws-load-balancer-iam-policy \
     --template-file iam-policy.yaml \
     --capabilities CAPABILITY_IAM
+
+
+aws iam attach-role-policy --role-name $1 --policy-arn $2
