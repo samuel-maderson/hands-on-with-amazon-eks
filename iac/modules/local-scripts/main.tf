@@ -26,3 +26,15 @@ resource "null_resource" "deploy_application" {
     command = "cd Infrastructure/k8s-tooling/load-balancer-controller/test/ && ./run.sh"
   }
 }
+
+resource "null_resource" "install_external_dns" {
+  provisioner "local-exec" {
+    command = "Infrastructure/k8s-tooling/external-dns/create.sh"
+  }
+}
+
+resource "null_resource" "helm_add_app_dns" {
+  provisioner "local-exec" {
+    command = "cd Infrastructure/k8s-tooling/load-balancer-controller/test/ && ./run-with-ssl.sh"
+  }
+}
