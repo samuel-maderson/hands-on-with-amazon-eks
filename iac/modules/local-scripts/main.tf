@@ -38,3 +38,22 @@ resource "null_resource" "helm_add_app_dns" {
     command = "cd Infrastructure/k8s-tooling/load-balancer-controller/test/ && ./run-with-ssl.sh"
   }
 }
+
+
+# resource "aws_iam_role_policy_attachment" "nodegroup_role" {
+#   role       = data.aws_iam_role.nodegroup.name
+#   policy_arn = data.aws_iam_policy.alb_policy.arn
+# }
+
+# resource "aws_iam_role_policy_attachment" "nodegroup_policies" {
+#   for_each = toset(var.local-scripts.nodegroup_policies)
+#   role       = data.aws_iam_role.nodegroup.name
+#   policy_arn = each.value
+# }
+
+# resource "null_resource" "deploy_apis" {
+#   for_each = toset(var.local-scripts.deploy_apis)
+#   provisioner "local-exec" {
+#     command = each.value
+#   }
+# }
