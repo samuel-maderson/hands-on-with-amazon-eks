@@ -1,0 +1,12 @@
+version: '3'
+services:
+  myapp:
+    image: hands-on-eks
+    build:
+      context: .
+      platforms:
+        - linux/amd64
+    volumes:
+      - /Users/samuelleao/acloudguru/hands-on-with-amazon-eks:/opt
+    command: tail -f /dev/null
+    container_name: hands-on-eks
