@@ -1,3 +1,5 @@
+aws eks update-kubeconfig --region us-east-1 --name eks-acg
+
 helm repo add eks https://aws.github.io/eks-charts
 
 helm upgrade --install \
@@ -12,4 +14,4 @@ aws cloudformation deploy \
     --capabilities CAPABILITY_IAM
 
 
-aws iam attach-role-policy --role-name $1 --policy-arn $2
+#aws iam attach-role-policy --role-name $1 --policy-arn $2

@@ -2,7 +2,7 @@ FROM ubuntu:22.04
 
 RUN apt update \
     && DEBIAN_FRONTEND=noninteractive  apt install python3 python3-pip \
-    unzip sudo curl less -y
+    unzip sudo curl less wget -y
 
 WORKDIR /opt
 

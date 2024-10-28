@@ -1,3 +1,5 @@
 /test.yaml
 iac/AWSCLIV2.pkg
 scripts-by-chapter/aws*
+aws*
+iac/aws*

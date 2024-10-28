@@ -60,10 +60,9 @@ def run_bash_command(command, script_name):
             print("Waiting for EKS to be ready...")
             print("This may take a few minutes...")
 
-            result = subprocess.run(['/bin/bash', '-c', command])
-
+            return subprocess.run(['/bin/bash', '-c', command])
         else:
-            result = subprocess.run(['/bin/bash', '-c', command],
+            subprocess.run(['/bin/bash', '-c', command],
                                     stdout=subprocess.DEVNULL,
                                     stderr=subprocess.DEVNULL,
                                     check=True
@@ -81,7 +80,8 @@ if __name__ == "__main__":
     load_dotenv()
 
     # # variables
-    scripts_dir = "scripts-by-chapter"
+    scripts_dir = os.getenv("SCRIPTS_DIRECTORY")
+    alb_dir = os.getenv("ALB_DIRECTORY")
     nodegroup_cfn_stack_name = os.getenv("NODEGROUP_CFN_STACK_NAME")
     alb_policy_cfn_stack_name = os.getenv("ALB_POLICY_CFN_STACK_NAME")
     tfvars_file = os.getenv("TFVARS_FILE")
@@ -91,8 +91,14 @@ if __name__ == "__main__":
     for script in scripts:
         print(f"Running: {script}")
         # Install basics dependencies & Deploy EKS
-        bash_command = f'cd {scripts_dir} && ./{script}'
-        run_bash_command(bash_command, script)
+
+        if script == "create.sh":
+            
+            bash_command = f'cd {alb_dir} && ./{script}'
+            run_bash_command(bash_command, script)
+        else:
+            bash_command = f'cd {scripts_dir} && ./{script}'
+            run_bash_command(bash_command, script)
     
 
     # Update nodegroup_role_name and alb_policy_arn in the terraform.tfvars file

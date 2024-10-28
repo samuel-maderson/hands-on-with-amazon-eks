@@ -2,11 +2,15 @@ version: '3'
 services:
   myapp:
     image: hands-on-eks
+    environment: 
+      - APP_SOURCE=${APP_SOURCE}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
     build:
       context: .
       platforms:
         - linux/amd64
     volumes:
-      - /Users/samuelleao/acloudguru/hands-on-with-amazon-eks:/opt
+      #- /Users/samuelleao/acloudguru/hands-on-with-amazon-eks:/opt
+      - ${APP_SOURCE}:/opt
     command: tail -f /dev/null
     container_name: hands-on-eks

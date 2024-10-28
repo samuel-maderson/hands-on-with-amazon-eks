@@ -13,6 +13,13 @@ resource "null_resource" "create_eks_cluster" {
     depends_on = [ null_resource.prepare_cloud_shell ]
 }
 
+
+resource "null_resource" "install_ssl_certificate" {
+  provisioner "local-exec" {
+    command = "cd Infrastructure/cloudformation/ssl-certificate/ && timeout 30s ./create.sh"
+  }
+}
+
 resource "null_resource" "install_aws_load_balancer" {
     provisioner "local-exec" {
       command = "cd Infrastructure/k8s-tooling/load-balancer-controller && ./create.sh ${var.local-scripts.eksnodegroup_role} ${var.local-scripts.aws_alb_policy}"
@@ -29,7 +36,7 @@ resource "null_resource" "deploy_application" {
 
 resource "null_resource" "install_external_dns" {
   provisioner "local-exec" {
-    command = "Infrastructure/k8s-tooling/external-dns/create.sh"
+    command = "cd Infrastructure/k8s-tooling/external-dns/ && ./create.sh"
   }
 }
 
@@ -51,8 +58,16 @@ resource "aws_iam_role_policy_attachment" "nodegroup_policies" {
   policy_arn = each.value
 }
 
+resource "null_resource" "dynamodb_table_apis" {
+  for_each = toset(var.local-scripts.dynamodb_table_apis)
+  provisioner "local-exec" {
+    command = each.value
+  }
+}
+
 resource "null_resource" "deploy_apis" {
   for_each = toset(var.local-scripts.deploy_apis)
+
   provisioner "local-exec" {
     command = each.value
   }
