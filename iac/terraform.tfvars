@@ -10,11 +10,14 @@ eksnodegroup_role = "eksctl-eks-acg-nodegroup-eks-node--NodeInstanceRole-cD0Fle5
     "cd ../inventory-api/infra/cloudformation/ && ./create-dynamodb-table.sh development",
     "cd ../renting-api/infra/cloudformation/ && ./create-dynamodb-table.sh development",
     "cd ../resource-api/infra/cloudformation/ && ./create-dynamodb-table.sh development",
+    "cd ../clients-api/infra/cloudformation/ && ./create-dynamodb-table.sh development"
   ]
 
   deploy_apis = [
     "cd ../inventory-api/infra/helm && ./create.sh",
     "cd ../renting-api/infra/helm && ./create.sh",
-    "cd ../resource-api/infra/helm && ./create.sh"
+    "cd ../resource-api/infra/helm && ./create.sh",
+    "cd ../front-end/infra/helm && ./create.sh",
+    "cd ../clients-api/infra/helm && ./create.sh"
   ]
 }
