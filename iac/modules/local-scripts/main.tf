@@ -16,7 +16,7 @@ resource "null_resource" "create_eks_cluster" {
 
 resource "null_resource" "install_ssl_certificate" {
   provisioner "local-exec" {
-    command = "cd Infrastructure/cloudformation/ssl-certificate/ && timeout 30s ./create.sh"
+    command = "cd Infrastructure/cloudformation/ssl-certificate/ && timeout 120s ./create.sh"
   }
 }
 

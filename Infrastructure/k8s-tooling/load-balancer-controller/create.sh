@@ -1,5 +1,7 @@
 aws eks update-kubeconfig --region us-east-1 --name eks-acg
 
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
 helm repo add eks https://aws.github.io/eks-charts
 
 helm upgrade --install \
