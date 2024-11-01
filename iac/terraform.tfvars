@@ -1,6 +1,6 @@
 main = {
-aws_alb_policy = "arn:aws:iam::891377197101:policy/aws-load-balancer-iam-policy-iamPolicy-AweICLTgamiQ"
-eksnodegroup_role = "eksctl-eks-acg-nodegroup-eks-node--NodeInstanceRole-cD0Fle5Xa8Gq"
+aws_alb_policy = "arn:aws:iam::891377009965:policy/aws-load-balancer-iam-policy-iamPolicy-N9sMbs2NFTtH"
+eksnodegroup_role = "eksctl-eks-acg-nodegroup-eks-node--NodeInstanceRole-PVhAnwf27pXS"
   nodegroup_policies = [
     "arn:aws:iam::aws:policy/AmazonRoute53FullAccess",
     "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"

@@ -33,6 +33,10 @@ sudo mv kubectl /usr/local/bin
 sudo chmod +x /usr/local/bin/kubectl
 
 
+echo "---------- TERRAFORM CLEAN ----------"
+sudo rm -rf /opt/iac/terraform.tfstate*
+sudo rm -rf /opt/iac/.terraform*
+
 echo "---------- INSTALLING TERRAFORM ----------"
 sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
 wget -O- https://apt.releases.hashicorp.com/gpg | \
