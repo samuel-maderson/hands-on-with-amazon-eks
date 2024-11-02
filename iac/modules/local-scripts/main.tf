@@ -56,3 +56,11 @@ resource "null_resource" "deploy_apis" {
     command = each.value
   }
 }
+
+# Client API - IAM Policy
+resource "null_resource" "client_api_iam_policy" {
+  for_each = toset(var.local-scripts.deploy_apis_sa_policy)
+  provisioner "local-exec" {
+    command = "${each.value} development"
+  }
+}

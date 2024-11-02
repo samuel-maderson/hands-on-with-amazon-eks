@@ -5,5 +5,6 @@ variable "main" {
     nodegroup_policies = list(string)
     dynamodb_table_apis = list(string)
     deploy_apis = list(string)
+    deploy_apis_sa_policy = list(string)
   })
 }

@@ -7,5 +7,6 @@ module "infra_eks" {
         nodegroup_policies = var.main.nodegroup_policies
         dynamodb_table_apis = var.main.dynamodb_table_apis
         deploy_apis = var.main.deploy_apis
+        deploy_apis_sa_policy = var.main.deploy_apis_sa_policy
     }
 }
