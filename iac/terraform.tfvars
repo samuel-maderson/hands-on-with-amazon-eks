@@ -1,6 +1,6 @@
 main = {
-aws_alb_policy = "arn:aws:iam::466694152237:policy/aws-load-balancer-iam-policy-iamPolicy-mUnZ3cJG109q"
-eksnodegroup_role = "eksctl-eks-acg-nodegroup-eks-node--NodeInstanceRole-ksBrOtDrPbQn"
+aws_alb_policy = "arn:aws:iam::767398115325:policy/aws-load-balancer-iam-policy-iamPolicy-SyLc6QJ3Gfys"
+eksnodegroup_role = "eksctl-eks-acg-nodegroup-eks-node--NodeInstanceRole-Y54o1doxeMqi"
   nodegroup_policies = [
     "arn:aws:iam::aws:policy/AmazonRoute53FullAccess",
     "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
@@ -20,8 +20,14 @@ eksnodegroup_role = "eksctl-eks-acg-nodegroup-eks-node--NodeInstanceRole-ksBrOtD
     "cd ../front-end/infra/helm && ./create.sh",
     "cd ../clients-api/infra/helm && ./create.sh"
   ]
+}
 
-  deploy_apis_sa_policy= [
-    "cd ../clients-api/infra/cloudformation/ && ./create-iam-policy.sh"
+
+sa-apis = {
+  apis_policies = [ 
+    "cd ../inventory-api/infra/cloudformation && ./create-iam-policy.sh",
+    "cd ../renting-api/infra/cloudformation && ./create-iam-policy.sh",
+    "cd ../resource-api/infra/cloudformation && ./create-iam-policy.sh",
+    "cd ../clients-api/infra/cloudformation && ./create-iam-policy.sh"
   ]
 }

@@ -6,7 +6,7 @@ resource "null_resource" "install_acm_certificate" {
 
 resource "null_resource" "install_aws_load_balancer" {
     provisioner "local-exec" {
-      command = "cd Infrastructure/k8s-tooling/load-balancer-controller && ./create.sh ${var.local-scripts.eksnodegroup_role} ${var.local-scripts.aws_alb_policy}"
+      command = "cd Infrastructure/k8s-tooling/load-balancer-controller && ./create.sh"
     }
 }
 
@@ -54,13 +54,5 @@ resource "null_resource" "deploy_apis" {
 
   provisioner "local-exec" {
     command = each.value
-  }
-}
-
-# Client API - IAM Policy
-resource "null_resource" "client_api_iam_policy" {
-  for_each = toset(var.local-scripts.deploy_apis_sa_policy)
-  provisioner "local-exec" {
-    command = "${each.value} development"
   }
 }

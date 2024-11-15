@@ -7,6 +7,14 @@ module "infra_eks" {
         nodegroup_policies = var.main.nodegroup_policies
         dynamodb_table_apis = var.main.dynamodb_table_apis
         deploy_apis = var.main.deploy_apis
-        deploy_apis_sa_policy = var.main.deploy_apis_sa_policy
     }
+}
+
+# This module creates policies && ServiceAccounts for APIs deployments
+module "sa_apis" {
+  source = "./modules/sa-apis"
+
+  sa-apis = {
+    apis_policies = var.sa-apis.apis_policies
+  }
 }

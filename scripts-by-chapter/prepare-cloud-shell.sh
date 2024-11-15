@@ -21,8 +21,8 @@ curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bas
 
 
 echo "---------- INSTALLING AWSCLI ----------"
-rm -rf /usr/local/aws-cli
-rm -rf aws*
+sudo rm -rf /usr/local/aws-cli
+sudo rm -rf aws*
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo aws/install
