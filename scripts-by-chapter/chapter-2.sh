@@ -21,11 +21,6 @@ echo "--- This could take around 10 minutes"
     aws iam attach-role-policy --role-name ${nodegroup_iam_role} --policy-arn arn:aws:iam::aws:policy/AmazonRoute53FullAccess
 
 #  Create the DynamoDB Tables
-    ln -s ../clients-api clients-api
-    ln -s ../inventory-api inventory-api
-    ln -s ../renting-api renting-api
-    ln -s ../resource-api resource-api
-    ln -s ../front-end front-end
 
     ( cd ./clients-api/infra/cloudformation && ./create-dynamodb-table.sh development ) & \
     ( cd ./inventory-api/infra/cloudformation && ./create-dynamodb-table.sh development ) & \
