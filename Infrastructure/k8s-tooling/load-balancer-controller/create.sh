@@ -1,7 +1,7 @@
 
 alb_check=$(kubectl get pods -n kube-system |grep aws-load-balancer |grep -i running| wc -l)
 
-if [ ! -n $alb_check ]; then
+if [ -n $alb_check ]; then
 
   aws eks update-kubeconfig --region us-east-1 --name eks-acg
 
